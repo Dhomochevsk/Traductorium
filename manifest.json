@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "name": "Traductorium",
+    "version": "1.0",
+    "icons":{
+        "128": "icon.png"
+    },
+    "background": {
+        "service_worker": "Traductorium.js"
+    },
+    "action": {} 
+}

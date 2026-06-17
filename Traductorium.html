@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lector</title>
+    <link rel="stylesheet" href="Traductorium.css">
+</head>
+<body>
+
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img
+    width="20"
+    alt="Angular Logo"
+    src="https://cdn-icons-png.freepik.com/512/59/59870.png"
+  />
+
+  <span>CORPORACION FRAUDUSUARIA</span>
+
+</div>
+    
+
+
+<div class="container">
+
+    <div class="left-panel">
+        <div id="drop-zone">
+            Arrastra aquí un EPUB o PDF
+        </div>
+
+        
+        <div id="viewer">
+            <button id="prev">Anterior</button>
+            <button id="next">Siguiente</button>
+            <button id="exit">X</button>
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+        <textarea placeholder="Notas..."></textarea>
+    </div>
+
+</div>
+
+<script src="libs/jszip.min.js"></script>
+<script src="libs/epub.min.js"></script>
+<script src="libs/pdf.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

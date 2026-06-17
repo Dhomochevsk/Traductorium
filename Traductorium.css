@@ -1,0 +1,110 @@
+body{
+    margin:0;
+}
+
+.container{
+    display:flex;
+    margin-top: 2.5%;
+    height:93vh;
+    background-color: blueviolet;
+}
+
+.left-panel{
+    width:50%;
+    border-right:1px solid gray;
+    
+}
+
+.right-panel{
+    width:50%;
+}
+
+#drop-zone{
+    height:90%;
+    border:5px dashed black;
+    margin:10px;
+    height: 95%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+#viewer{
+    height:90%;
+    margin:10px;
+    height: 95%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:auto;
+    display:none; 
+}
+
+textarea{
+    width:100%;
+    height:90%;
+    box-sizing:border-box;
+}
+
+
+
+
+
+
+
+/*+++++++++++++++*/
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    
+
+    border: 1px solid rgb(211, 211, 211);
+
+    color: rgb(51, 51, 51);
+    font-weight: 600;
+    
+    padding-right: 3%;
+    
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 120%;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+
+
+.opcionesBarra{
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.opcionesBarra button{
+  background-color: #f7f7f7;
+  border: none;
+  color: rgb(51, 51, 51);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 100%;
+}
+
