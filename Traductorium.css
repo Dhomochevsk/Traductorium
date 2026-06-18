@@ -1,11 +1,14 @@
 body{
     margin:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
 }
 
 .container{
     display:flex;
-    margin-top: 2.5%;
-    height:93vh;
+    margin-top: 5%;
+    height:94.5vh;
     background-color: blueviolet;
 }
 
@@ -20,7 +23,6 @@ body{
 }
 
 #drop-zone{
-    height:90%;
     border:5px dashed black;
     margin:10px;
     height: 95%;
@@ -30,15 +32,23 @@ body{
 
 }
 
-#viewer{
-    height:90%;
-    margin:10px;
-    height: 95%;
-    display:flex;
+#Contentviewer{
+    height:100%;
     justify-content:center;
     align-items:center;
     overflow:auto;
     display:none; 
+}
+
+#viewer{
+    width: 100%;
+    height: 95%;
+    margin: 10px;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 textarea{
@@ -51,9 +61,62 @@ textarea{
 
 
 
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+  .toolbarLeft {
+    position: absolute;
+    margin-top: 2.5%;
+    
+    top: 0;
+    left: 0;
+    right: 50%;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    
+
+    border: 1px solid rgb(211, 211, 211);
+
+    color: rgb(51, 51, 51);
+    font-weight: 600;
+    
+    padding-right: 3%;
+    
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 120%;
+  }
 
 
-/*+++++++++++++++*/
+    .toolbarRight {
+    position: absolute;
+    margin-top: 2.5%;
+    
+    top: 0;
+    left: 50%;
+    right: 0;
+    height: 5%;
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    
+
+    border: 1px solid rgb(211, 211, 211);
+
+    color: rgb(51, 51, 51);
+    font-weight: 600;
+    
+    padding-right: 3%;
+    
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: 120%;
+  }
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
   .toolbar {
     position: absolute;
@@ -108,3 +171,35 @@ textarea{
   font-size: 100%;
 }
 
+/*++++++++++++++++++++++++*/
+
+
+#editor{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 20px;
+    background: white;
+    outline: none;
+    box-sizing: border-box;
+}
+
+
+
+#drop-docx{
+    border:5px dashed black;
+    margin:10px;
+    height: 95%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+#ContentDoc{
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    overflow:auto;
+    display:none; 
+}

@@ -25,21 +25,53 @@
 <div class="container">
 
     <div class="left-panel">
-        <div id="drop-zone">
-            Arrastra aquí un EPUB o PDF
-        </div>
 
-        
-        <div id="viewer">
+
+        <div class="toolbarLeft" >
+
+        <span>CORPORACION FRAUDUSUARIA</span>
             <button id="prev">Anterior</button>
             <button id="next">Siguiente</button>
             <button id="exit">X</button>
         </div>
 
+
+
+        <div id="drop-zone">
+            Arrastra aquí un EPUB o PDF
+        </div>
+
+        <div id="Contentviewer">
+                <button id="prev">Anterior</button>
+                <button id="next">Siguiente</button>
+                <button id="exit">X</button>
+            <div id="viewer">
+
+            </div>
+        </div>
+
+
     </div>
 
     <div class="right-panel">
-        <textarea placeholder="Notas..."></textarea>
+
+        <div class="toolbarRight">
+            <span>CORPORACION FRAUDUSUARIA</span>
+
+            <button id="newDoc">Nuevo DOCX</button>
+            <button id="saveDoc">Guardar DOCX</button>
+        </div>
+
+        <div id="drop-docx">
+            Arrastra aquí un archivo DOCX
+        </div>
+
+        <div id="ContentDoc">
+            <div id="editor" contenteditable="true"></div>
+        </div>
+
+
+
     </div>
 
 </div>
@@ -47,6 +79,10 @@
 <script src="libs/jszip.min.js"></script>
 <script src="libs/epub.min.js"></script>
 <script src="libs/pdf.min.js"></script>
+
+<script src="libs/docx.min.js"></script>
+<script src="libs/mammoth.browser.min.js"></script>
+
 <script src="script.js"></script>
 
 </body>
