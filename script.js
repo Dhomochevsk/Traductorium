@@ -64,50 +64,21 @@ dropZone.addEventListener("drop", e => {
 
 function abrirPDF(file) {
 
-    limpiarLeft()
+    limpiarLeft();
 
-    const reader = new FileReader();
+    const viewer = document.getElementById("viewer");
+    viewer.innerHTML = "";
 
-    reader.onload = function (e) {
+    const url = URL.createObjectURL(file);
 
-        const typedArray = new Uint8Array(e.target.result);
+    const object = document.createElement("object");
 
-        pdfjsLib.getDocument(typedArray).promise.then(function (pdf) {
+    object.className = "pdfview";
+    object.type = "application/pdf";
+    //object.data = url + "#toolbar=0";
+    object.data = url;
 
-            pdfDoc = pdf;
-
-            const viewer = document.getElementById("viewer");
-            viewer.innerHTML = "";
-
-            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-
-                pdf.getPage(pageNum).then(function (page) {
-
-                    const scale = 1.5;
-                    const viewport = page.getViewport({ scale: scale });
-
-                    const canvas = document.createElement("canvas");
-                    const context = canvas.getContext("2d");
-
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-
-                    viewer.appendChild(canvas);
-
-                    page.render({
-                        canvasContext: context,
-                        viewport: viewport
-                    });
-
-                });
-
-            }
-
-        });
-
-    };
-
-    reader.readAsArrayBuffer(file);
+    viewer.appendChild(object);
 
 }
 
