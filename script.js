@@ -104,6 +104,19 @@ function abrirEPUB(file) {
             height: "100%"
         });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         rendition.display();
     };
 
