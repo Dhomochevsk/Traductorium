@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@embedpdf/core": "^2.14.4"
+  }
+}

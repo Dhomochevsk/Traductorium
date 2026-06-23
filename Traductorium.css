@@ -7,9 +7,9 @@ body{
 
 .container{
     display:flex;
-    margin-top: 5%;
+    margin-top: 6%;
     height:94.5vh;
-    background-color: blueviolet;
+    background-color: rgb(255, 0, 0);
 }
 
 .left-panel{

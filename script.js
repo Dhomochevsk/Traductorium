@@ -17,6 +17,7 @@ const exit = document.getElementById("exit");
 let book = null;
 let rendition = null;
 let pdfDoc = null;
+let fontSize = 100; // porcentaje
 //------------------------------------------------------------------------
 const pdfjsLib = window.pdfjsLib;
 
@@ -84,9 +85,6 @@ function abrirPDF(file) {
 
 //---------------------------------------------------------------------
 
-
-
-
 function abrirEPUB(file) {
 
     limpiarLeft()
@@ -95,30 +93,44 @@ function abrirEPUB(file) {
 
     const reader = new FileReader();
 
+
+
+
     reader.onload = function (e) {
 
         book = ePub(e.target.result);
 
         rendition = book.renderTo("viewer", {
             width: "100%",
-            height: "100%"
+            height: "100%",
+            flow: "scrolled-doc"
         });
 
+        rendition.hooks.content.register(function(contents) {
 
+            console.log("HOOK EJECUTADO");
 
+            const style = contents.document.createElement("style");
 
+            style.textContent = `
+                .block_16,
+                .block_16 *,
+                .text_1,
+                .text_2 {
+                    font-size: inherit !important;
+                }
+            `;
 
+            contents.document.head.appendChild(style);
 
-
-
-
-
-
-
-
+        });
 
         rendition.display();
+
+        cargarCapitulos();
     };
+
+
 
     reader.readAsArrayBuffer(file);
 }
@@ -130,6 +142,65 @@ document.getElementById("next").addEventListener("click", () => {
 document.getElementById("prev").addEventListener("click", () => {
     if (rendition) rendition.prev();
 });
+
+document.getElementById("increaseFont").addEventListener("click", () => {
+    if (rendition) {
+
+        fontSize += 10;
+
+        rendition.themes.override(
+            "font-size",
+            fontSize + "%"
+        );
+
+    }
+});
+
+document.getElementById("decreaseFont").addEventListener("click", () => {
+    if (rendition) {
+
+        fontSize -= 10;
+
+        rendition.themes.override(
+            "font-size",
+            fontSize + "%"
+        );
+
+    }
+});
+
+function cargarCapitulos() {
+
+    const chapterList = document.getElementById("chapterList");
+
+    chapterList.innerHTML =
+        '<option value="">Capítulos</option>';
+
+    book.loaded.navigation.then(function(nav) {
+
+        nav.toc.forEach(function(chapter) {
+
+            const option = document.createElement("option");
+
+            option.textContent = chapter.label;
+            option.value = chapter.href;
+
+            chapterList.appendChild(option);
+        });
+
+    });
+}
+
+document.getElementById("chapterList")
+.addEventListener("change", function() {
+
+    if (this.value && rendition) {
+        rendition.display(this.value);
+    }
+
+});
+
+
 
 //---------------------------------------------------------------------
 
