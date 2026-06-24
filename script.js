@@ -12,12 +12,13 @@ console.log(window.docxjs);
 
 const contentviewer = document.getElementById("Contentviewer");
 const viewer = document.getElementById("viewer");
-const exit = document.getElementById("exit");
+const exitDoc = document.getElementById("exitDoc");
 //------------------------------------------------------------------------
 let book = null;
 let rendition = null;
 let pdfDoc = null;
 let fontSize = 100; // porcentaje
+let docModificado = false;
 //------------------------------------------------------------------------
 const pdfjsLib = window.pdfjsLib;
 
@@ -30,7 +31,27 @@ const dropDocx = document.getElementById("drop-docx");
 const contentDoc = document.getElementById("ContentDoc");
 const editor = document.getElementById("editor");
 
+editor.addEventListener("input", () => {
+    docModificado = true;
+});
 
+exitDoc.addEventListener("click", e => {
+
+    if (docModificado) {
+
+        const confirmar = confirm(
+            "Hay cambios sin guardar. ¿Estás seguro de que deseas cerrar el documento?"
+        );
+
+        if (!confirmar) {
+            return;
+        }
+
+    }
+
+    mostrarRight();
+
+});
 
 exit.addEventListener("click", e => {
     mostrarLeft();
@@ -250,7 +271,7 @@ const { Document, Paragraph, Packer } = window.docx;
 document.getElementById("newDoc").addEventListener("click", () => {
     ocultarRight();
     editor.innerHTML = "";
-
+    docModificado = false;
 });
 
 
@@ -284,7 +305,7 @@ document.getElementById("saveDoc").addEventListener("click", async () => {
         document.body.removeChild(enlace);
 
         URL.revokeObjectURL(enlace.href);
-
+        docModificado = false;
     }
     catch (error) {
 
@@ -334,7 +355,7 @@ dropDocx.addEventListener("drop", e => {
 
             // Conserva negritas, listas, encabezados, etc.
             editor.innerHTML = result.value;
-
+            docModificado = false;
         })
         .catch(error => {
 
