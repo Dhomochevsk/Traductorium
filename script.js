@@ -190,23 +190,53 @@ document.getElementById("decreaseFont").addEventListener("click", () => {
     }
 });
 
+const sidebar = document.getElementById("chapterList");
+const openMenu = document.getElementById("openMenu");
+
+openMenu.addEventListener("click", (e) => {
+
+    e.stopPropagation(); // evita que el clic llegue al document
+
+    sidebar.classList.toggle("open");
+});
+
+document.addEventListener("click", (e) => {
+
+    if (
+        sidebar.classList.contains("open") &&
+        !sidebar.contains(e.target) &&
+        !openMenu.contains(e.target)
+    ) {
+        sidebar.classList.remove("open");
+    }
+
+});
+
 function cargarCapitulos() {
 
     const chapterList = document.getElementById("chapterList");
 
-    chapterList.innerHTML =
-        '<option value="">Capítulos</option>';
+    chapterList.innerHTML = "";
 
     book.loaded.navigation.then(function(nav) {
 
         nav.toc.forEach(function(chapter) {
 
-            const option = document.createElement("option");
+            const link = document.createElement("a");
 
-            option.textContent = chapter.label;
-            option.value = chapter.href;
+            link.href = "#";
+            link.textContent = chapter.label;
 
-            chapterList.appendChild(option);
+            link.addEventListener("click", function(e) {
+
+                e.preventDefault();
+
+                rendition.display(chapter.href);
+
+                chapterList.classList.remove("open");
+            });
+
+            chapterList.appendChild(link);
         });
 
     });

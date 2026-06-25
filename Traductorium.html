@@ -7,18 +7,6 @@
 </head>
 <body>
 
-
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <img
-    width="20"
-    alt="Angular Logo"
-    src="https://cdn-icons-png.freepik.com/512/59/59870.png"
-  />
-
-  <span>CORPORACION FRAUDUSUARIA</span>
-
-</div>
     
 
 
@@ -28,19 +16,29 @@
 
 
         <div class="toolbarLeft">
+            <div class="sidebar" id="chapterList">
+            </div>
 
-            <button id="prev">Anterior</button>
-            <button id="next">Siguiente</button>
+            <button class="menuBtn" id="openMenu">☰</button>
+            <span class="spanTitle">CORPORACION FRAUDUSUARIA</span>
 
-            <button id="decreaseFont">A-</button>
-            <button id="increaseFont">A+</button>
 
-            <select id="chapterList">
-                <option value="">Capítulos</option>
-            </select>
 
-            <button id="exit">X</button>
+            <div class="toolbarButtons">
+                <button id="prev">Anterior</button>
+                <button id="next">Siguiente</button>
 
+                <button id="decreaseFont">A-</button>
+                <button id="increaseFont">A+</button>
+
+
+
+                
+
+
+
+                <button id="exit">X</button>
+            </div>
         </div>
 
 
@@ -61,11 +59,15 @@
     <div class="right-panel">
 
         <div class="toolbarRight">
-            <span>CORPORACION FRAUDUSUARIA</span>
+            
 
-            <button id="newDoc">Nuevo DOCX</button>
-            <button id="saveDoc">Guardar DOCX</button>
-            <button id="exitDoc">X</button>
+            <div class="toolbarButtons">
+                <button id="newDoc">Nuevo DOCX</button>
+                <button id="saveDoc">Guardar DOCX</button>
+                <button id="exitDoc">X</button>
+
+
+            </div>
 
         </div>
 
