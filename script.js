@@ -1,7 +1,5 @@
 console.log(ePub);
 
-console.log(window.pdfjsLib);
-console.log(window.pdfjsDistBuildPdf);
 
 
 //------------------------------------------------------------------------
@@ -20,9 +18,7 @@ let pdfDoc = null;
 let fontSize = 100; // porcentaje
 let docModificado = false;
 //------------------------------------------------------------------------
-const pdfjsLib = window.pdfjsLib;
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "libs/pdf.worker.min.js";
 
 const dropZone = document.getElementById("drop-zone");
 
@@ -252,6 +248,187 @@ document.getElementById("chapterList")
 });
 
 
+//--------------buscar--------------------------------
+
+// Referencias
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+
+
+// Muestra los resultados
+function mostrarResultadosBusqueda(resultados) {
+
+    searchResults.innerHTML = "";
+
+    resultados.forEach(function(resultado) {
+
+        const link = document.createElement("a");
+
+        link.href = "#";
+        const palabra = searchInput.value.trim();
+
+        link.innerHTML = resultado.titulo.replace(
+            new RegExp(`(${palabra})`, "gi"),
+            "<mark>$1</mark>"
+        );
+
+        link.addEventListener("click", function(e) {
+
+            e.preventDefault();
+
+/*esto remplaza esto rendition.display(chapter.href); para resaltar resultados al buscar*/
+
+                rendition.display(resultado.href).then(function() {
+
+                    resaltarPalabraVisible(searchInput.value.trim());
+
+                });
+/**----------------------------------------------------------- */
+                searchResults.classList.remove("open");
+
+            });
+
+
+
+
+        searchResults.appendChild(link);
+
+    });
+
+    if (resultados.length > 0) {
+        searchResults.classList.add("open");
+    } else {
+        searchResults.classList.remove("open");
+    }
+}
+
+
+async function buscarEnLibro(palabra) {
+
+    const resultados = [];
+
+    palabra = palabra.toLowerCase();
+
+    for (const section of book.spine.spineItems) {
+
+        try {
+
+            const doc = await section.load(book.load.bind(book));
+
+            const body = doc.querySelector("body");
+            const texto = body ? body.textContent : "";
+            const textoLower = texto.toLowerCase();
+
+            let indice = 0;
+
+            while ((indice = textoLower.indexOf(palabra, indice)) !== -1) {
+
+                const inicio = Math.max(0, indice - 40);
+                const fin = Math.min(texto.length, indice + palabra.length + 40);
+
+                resultados.push({
+
+                    titulo: texto.substring(inicio, fin).replace(/\s+/g, " "),
+                    href: section.href
+
+                });
+
+                indice += palabra.length;
+
+            }
+
+            section.unload();
+
+        } catch (e) {
+
+            console.error(e);
+
+        }
+
+    }
+
+    mostrarResultadosBusqueda(resultados);
+
+}
+
+
+let palabraBuscada = "";
+searchInput.addEventListener("input", function () {
+
+    const palabra = this.value.trim();
+
+    if (palabra === "") {
+
+        searchResults.innerHTML = "";
+        searchResults.classList.remove("open");
+        return;
+
+    }
+
+    palabraBuscada = palabra;
+    buscarEnLibro(palabra);
+
+});
+
+
+// Cerrar la lista al hacer clic fuera
+document.addEventListener("click", function(e) {
+
+    if (!searchResults.contains(e.target) && e.target !== searchInput) {
+
+        searchResults.classList.remove("open");
+
+    }
+
+});
+
+
+
+
+
+function resaltarPalabraVisible(palabra) {
+
+    const iframe = document.querySelector("#viewer iframe");
+
+    if (!iframe) return;
+
+    const doc = iframe.contentDocument;
+
+    if (!doc) return;
+
+    const walker = doc.createTreeWalker(
+        doc.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+    );
+
+    const regex = new RegExp(palabra, "gi");
+
+    const textos = [];
+
+    while (walker.nextNode()) {
+        textos.push(walker.currentNode);
+    }
+
+    textos.forEach(function(textNode) {
+
+        if (!regex.test(textNode.nodeValue)) return;
+
+        regex.lastIndex = 0;
+
+        const span = doc.createElement("span");
+
+        span.innerHTML = textNode.nodeValue.replace(
+            regex,
+            "<mark>$&</mark>"
+        );
+
+        textNode.parentNode.replaceChild(span, textNode);
+
+    });
+
+}
 
 //---------------------------------------------------------------------
 
