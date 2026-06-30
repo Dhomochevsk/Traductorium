@@ -15,32 +15,29 @@
     <div class="left-panel">
 
 
-        <div class="toolbarLeft">
+        <div class="toolbarLeft" >
             <div class="sidebar" id="chapterList">
             </div>
 
             <button class="menuBtn" id="openMenu">☰</button>
-            <span class="spanTitle">CORPORACION FRAUDUSUARIA</span>
+            <span class="spanTitle" id="Titulo">CORPORACION FRAUDUSUARIA</span>
 
 
 
 
 
 
-            <div class="toolbarButtons">
+            <div class="toolbarButtons" id="panelButons">
                 <button id="prev">Anterior</button>
                 <button id="next">Siguiente</button>
 
                 <button id="decreaseFont">A-</button>
                 <button id="increaseFont">A+</button>
 
-
-
-                
                 <div class="search-container">
 
                     <form>
-                        <input type="text" placeholder="Search..." id="searchInput">
+                        <input class="search-box" type="text" placeholder="Search..." id="searchInput">
                     </form>
 
                     <div class="search-results" id="searchResults"></div>
@@ -71,10 +68,11 @@
 
         <div class="toolbarRight">
             
-
-            <div class="toolbarButtons">
-                <button id="newDoc">Nuevo DOCX</button>
+            <button class="newDocButton" id="newDoc">Nuevo DOCX</button>
+            <div class="toolbarButtons" id="panelButonsRight">
+                
                 <button id="saveDoc">Guardar DOCX</button>
+                
                 <button id="exitDoc">X</button>
 
 
@@ -98,7 +96,6 @@
 
 <script src="libs/jszip.min.js"></script>
 <script src="libs/epub.min.js"></script>
-<script src="libs/pdf.min.js"></script>
 
 <script src="libs/docx.min.js"></script>
 <script src="libs/mammoth.browser.min.js"></script>

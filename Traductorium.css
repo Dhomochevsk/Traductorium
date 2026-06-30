@@ -64,8 +64,7 @@ textarea{
 
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-  .toolbarLeft {
-    
+.toolbarLeft {
 
     position: absolute;
 
@@ -96,7 +95,7 @@ textarea{
   }
 
 
-    .toolbarRight {
+.toolbarRight {
     position: absolute;
     
     top: 0;
@@ -121,7 +120,7 @@ textarea{
     font-size: 120%;
 
 
-  justify-content: right;
+    justify-content: right;
   }
 
   .spanTitle{
@@ -130,19 +129,91 @@ textarea{
 
 
   .toolbarButtons {
+    pointer-events: none;
+    opacity: 0.5;
+    
     display: flex;
+
+    /*display: flex;*/
     align-items: center;
     gap: 5px;
 }
 
-button{
+
+.toolbarButtons button{
+    color: rgb(85, 85, 85);
+    cursor: not-allowed;
+
+
     border: none; 
-    color: rgb(0, 0, 0); 
+
     padding: 7px 14px; 
     cursor: pointer; 
 
 }
 
+.newDocButton {
+        pointer-events: auto;
+    opacity: 1;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+
+.panel-disabled {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.panel-disabled button {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+
+.newDocButton{
+    opacity: 1;
+    color: rgb(0, 0, 0);
+    pointer-events: auto;
+    cursor: pointer;
+
+
+    
+    display: flex;
+
+    /*display: flex;*/
+    border: 1px solid #181D1A;
+    margin-right: 1%;
+    gap: 5px;
+    border-radius: 0%;
+    padding: 7px 14px; 
+/**/
+
+
+
+}
+
+
+.button-disabled {
+    color: rgb(85, 85, 85);
+    cursor: not-allowed;
+
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+
+
+.search-box{
+    border: 1px solid #181D1A;
+    margin-right: 1%;
+    gap: 5px;
+    border-radius: 0%;
+    padding: 7px 14px; 
+    gap: 5px;
+    border-radius: 0%;
+}
 
 
 /*--------------------------menu desplegable---------------------------------*/
@@ -226,62 +297,9 @@ mark{
     padding: 0;
 }
 
+
+
 /*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5%;
-    display: flex;
-    align-items: center;
-    background-color: #f7f7f7;
-    
-
-    border: 1px solid rgb(211, 211, 211);
-
-    color: rgb(51, 51, 51);
-    font-weight: 600;
-    
-    padding-right: 3%;
-    
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-size: 120%;
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-
-
-.opcionesBarra{
-  margin-left: auto;
-  display: flex;
-  gap: 10px;
-}
-
-.opcionesBarra button{
-  background-color: #f7f7f7;
-  border: none;
-  color: rgb(51, 51, 51);
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-
-  font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-size: 100%;
-}
-
-/*++++++++++++++++++++++++*/
 
 
 #editor{
@@ -319,40 +337,15 @@ mark{
 /*-----------------------------------------------------*/
 
 
-:root {
-    --scale-factor: 1;
-}
-
-.pdfViewer {
-    --scale-factor: 1;
-}
-
-.pdfViewer .page {
-    position: relative;
-    overflow: visible;
-    background-color: white;
-}
-
-
-
-.textLayer {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    line-height: 1;
-}
-
-.textLayer span {
-    position: absolute;
-    white-space: pre;
-    transform-origin: 0 0;
-
-    /* Hacer el texto invisible */
-    color: transparent;
-}
-
 .pdfview{
     width: 100%;
     height: 100%;
     border: none;
 }
+
+/*--------------------------------------------------------*/
+
+.menuBtn{
+    display: none;
+}
+

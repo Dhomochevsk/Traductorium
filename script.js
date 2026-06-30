@@ -1,11 +1,4 @@
-console.log(ePub);
 
-
-
-//------------------------------------------------------------------------
-console.log("PATATA");
-console.log(window.docx);
-console.log(window.docxjs);
 
 
 const contentviewer = document.getElementById("Contentviewer");
@@ -288,9 +281,6 @@ function mostrarResultadosBusqueda(resultados) {
 
             });
 
-
-
-
         searchResults.appendChild(link);
 
     });
@@ -432,15 +422,29 @@ function resaltarPalabraVisible(palabra) {
 
 //---------------------------------------------------------------------
 
+const panelButons = document.getElementById("panelButons");
+const titulo = document.getElementById("Titulo");
 
 function ocultarLeft() {
     dropZone.style.display = "none";
     contentviewer.style.display = "block";
+
+    openMenu.style.display="block";
+    
+    titulo.style.display="none";
+    panelButons.classList.add("panel-disabled");
+    panelButons.style.pointerEvents = "auto";
 }
 
 function mostrarLeft() {
     dropZone.style.display = "block";
     contentviewer.style.display = "none";
+
+    openMenu.style.display="none";
+
+    titulo.style.display="block";
+    panelButons.style.pointerEvents = "none";
+    panelButons.classList.remove("panel-disabled");
 
 }
 
@@ -579,15 +583,23 @@ dropDocx.addEventListener("drop", e => {
 
 //---------------------------------------------------------------------------------
 
+const panelButonsRight = document.getElementById("panelButonsRight");
+const newDoc = document.getElementById("newDoc");
+
+
 function ocultarRight() {
     dropDocx.style.display = "none";
     contentDoc.style.display = "block";
+
+    panelButonsRight.classList.add("panel-disabled");
+    newDoc.classList.add("button-disabled")
 }
 
 function mostrarRight() {
     dropDocx.style.display = "block";
     contentDoc.style.display = "none";
 
+    panelButonsRight.classList.remove("panel-disabled");
+    newDoc.classList.remove("button-disabled")
 }
-
 
